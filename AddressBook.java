@@ -6,8 +6,7 @@ public class AddressBook {
 	
 	private Scanner sc;
 
-	public void saveRecord(String firstName,String lastName,
-			String address, String city,String state,String zip ,String phone,String filepath)
+	public void saveRecord(String firstName,String lastName,String address, String city,String state,String zip ,String phone,String filepath)
 	{
 
 		try {
@@ -27,24 +26,26 @@ public class AddressBook {
 	}
 	
 	public int saveAs() {
-		sc = new Scanner(System.in);
-		System.out.println("Enter 1.)Save 2.)Save As");
-		int choice=sc.nextInt();
-		int ch=0;
-		switch(choice) {
-			case 1:
-				ch=1;
-				System.out.println("Saving...");
-				break;
-			case 2:
-				System.out.println("Saving as .csv extension");				
-				ch=2;
-				break;
-			default:
-				System.out.println("Enter Valid Choice!!");
-				break;
-		}
-		return ch;
+		sc = new Scanner(System.in); 
+			System.out.println("Enter 1.)Save 2.)Save As");
+			int choice=sc.nextInt();
+			int ch=0;
+			switch(choice) {
+				case 1:
+					ch=1;
+					System.out.println("Saving...");
+					break;
+				case 2:
+					System.out.println("Saving as .csv extension");				
+					ch=2;
+					break;
+				default:
+					System.out.println("Enter Valid Choice!!");
+					break;
+			}
+			return ch;
+		
+		 
 	}
 	public void removeRecord( String name) throws FileNotFoundException {
 		
@@ -210,5 +211,33 @@ public class AddressBook {
 		catch(Exception e) {
 			System.out.println(e);
 		}
+	}
+	public String[] getDetails() {
+		sc = new Scanner(System.in);
+			System.out.println("Enter Your Details");
+
+			System.out.println("First Name: ");
+			String firstName = sc.nextLine();
+
+		System.out.println("Last Name: ");
+			String lastName  = sc.nextLine();
+
+			System.out.println("Address: ");
+			String address   = sc.nextLine();
+
+			System.out.println("City: ");
+			String city      = sc.nextLine();
+
+			System.out.println("State: ");
+			String state     = sc.nextLine();
+
+			System.out.println("Zip: ");
+			String   zip       = sc.nextLine();
+
+			System.out.println("Phone Number: ");
+			String    phone     = sc.nextLine();
+
+			return new String[] {firstName,lastName,address,city,state,zip,phone};
+		
 	}
 }
