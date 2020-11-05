@@ -136,8 +136,7 @@ public class AddressBook {
 		sc.close();
 	}
 	
-	public void editRecord(String newfirstName,String newlastName,
-			String newaddress, String newcity,String newstate,String newzip,String newphone) {
+	public void editRecord(String newfirstName,String newlastName,String newaddress, String newcity,String newstate,String newzip,String newphone) {
 		
 		String tempFile = "C:/Users/w/Desktop/AddBook/temp.txt";
 		File oldFile = new File("C:/Users/w/Desktop/AddBook/output.txt");
@@ -150,7 +149,7 @@ public class AddressBook {
 		String zip = "";
 		String phone ="";
 		try {
-			FileWriter     fw = new FileWriter(tempFile,true);  //does not overrides but appends,writes when there is any value
+			FileWriter     fw = new FileWriter(tempFile,true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter    pw = new PrintWriter(bw);
 			Scanner sc = new Scanner(new File("C:/Users/w/Desktop/AddBook/output.txt"));

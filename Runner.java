@@ -7,8 +7,8 @@ public class Runner extends AddressBook {
 			
 		Runner r = new Runner();
 		try (Scanner sc = new Scanner(System.in)) {
-			int valid=1;
-			while(valid==1) {
+			boolean flag=true;
+			while(flag) {
 					
 				System.out.println("Enter Below Option for a Record: ");
 				System.out.println("1)Add 2)Search 3)Edit 4)Delete 5)Exit");
@@ -97,7 +97,7 @@ public class Runner extends AddressBook {
 						break;
 				
 					case 5:
-						valid=0;
+						flag=false;
 						break;
 					default:
 						System.out.println("Enter Valid Choice!!");
