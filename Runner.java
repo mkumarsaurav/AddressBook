@@ -43,8 +43,15 @@ public class Runner extends AddressBook {
 					
 					String filepath = "C:/Users/w/Desktop/AddBook/output.txt";
 					
-					r.saveRecord(firstName,lastName,address,city,state,zip,phone,filepath);
-					
+					int ch=r.saveAs();
+					if(ch==1)
+						r.saveRecord(firstName,lastName,address,city,state,zip,phone,filepath);
+					else if(ch==2) {
+						String filepath1 = "C:/Users/w/Desktop/AddBook/output.csv";
+						r.saveRecord(firstName,lastName,address,city,state,zip,phone,filepath1);
+					}
+					else
+						System.out.println("Record Not Saved");
 					break;
 				
 				case 2:
@@ -97,7 +104,6 @@ public class Runner extends AddressBook {
 					break;
 			
 			}
-			//sc.close();
 		}
 		}
 }

@@ -4,6 +4,8 @@ import java.util.*;
 public class AddressBook {
 
 	
+	private Scanner sc;
+
 	public void saveRecord(String firstName,String lastName,
 			String address, String city,String state,String zip ,String phone,String filepath)
 	{
@@ -24,6 +26,26 @@ public class AddressBook {
 	
 	}
 	
+	public int saveAs() {
+		sc = new Scanner(System.in);
+		System.out.println("Enter 1.)Save 2.)Save As");
+		int choice=sc.nextInt();
+		int ch=0;
+		switch(choice) {
+			case 1:
+				ch=1;
+				System.out.println("Saving...");
+				break;
+			case 2:
+				System.out.println("Saving as .csv extension");				
+				ch=2;
+				break;
+			default:
+				System.out.println("Enter Valid Choice!!");
+				break;
+		}
+		return ch;
+	}
 	public void removeRecord( String name) throws FileNotFoundException {
 		
 		String tempFile = "C:/Users/w/Desktop/AddBook/temp.txt";
