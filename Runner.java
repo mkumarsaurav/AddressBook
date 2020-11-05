@@ -3,17 +3,19 @@ import java.util.*;
 
 public class Runner extends AddressBook {
 
+	
+	public static void main(String[] args) throws FileNotFoundException {
 		
-		public static void main(String[] args) throws FileNotFoundException {
-			Scanner sc = new Scanner(System.in);
-			
-			Runner r = new Runner();
+		
+		Runner r = new Runner();
+		try (Scanner sc = new Scanner(System.in)) {
 			int valid=1;
 			while(valid==1) {
+					
 			System.out.println("Enter Below Option for a Record: ");
 			System.out.println("1)Add 2)Search 3)Edit 4)Delete 5)Exit");
 			int option = sc.nextInt();
-			
+				
 			switch(option) {
 			
 				case 1:
@@ -53,7 +55,7 @@ public class Runner extends AddressBook {
 					else
 						System.out.println("Record Not Saved");
 					break;
-				
+					
 				case 2:
 					System.out.println("Enter First Name to Search: ");
 					Scanner sc2 = new Scanner(System.in);
@@ -78,17 +80,17 @@ public class Runner extends AddressBook {
 					
 					System.out.println("State: ");
 					String newstate     = sc3.nextLine();
-					
+						
 					System.out.println("Zip: ");
 					String   newzip       = sc3.nextLine();
 					
 					System.out.println("Phone Number: ");
 					String    newphone     = sc3.next();
-					
+						
 					r.editRecord(newfirstName,newlastName,newaddress,newcity,newstate,newzip,newphone);
 					break;
-					
-					
+						
+						
 				case 4:
 					System.out.println("Enter First Name to Delete: ");
 					Scanner sc4 = new Scanner(System.in);
@@ -104,6 +106,7 @@ public class Runner extends AddressBook {
 					break;
 			
 			}
+}
 		}
-		}
+}
 }

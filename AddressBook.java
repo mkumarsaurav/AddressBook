@@ -49,6 +49,7 @@ public class AddressBook {
 	public void removeRecord( String name) throws FileNotFoundException {
 		
 		String tempFile = "C:/Users/w/Desktop/AddBook/temp.txt";
+		//File of = new File("C:/Users/w/Desktop/AddBook/output.txt");
 		File oldFile = new File("C:/Users/w/Desktop/AddBook/output.txt");
 		File newFile = new File(tempFile);
 		String firstName=""; 
@@ -60,10 +61,10 @@ public class AddressBook {
 		String phone ="";
 		
 		try {
-			FileWriter     fw = new FileWriter(tempFile,true);
+			FileWriter     fw = new FileWriter(newFile,true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter    pw = new PrintWriter(bw);
-			Scanner sc = new Scanner(new File( "C:/Users/w/Desktop/AddBook/output.txt"));
+			Scanner sc = new Scanner(oldFile);
 			sc.useDelimiter("[,\n]");
 			
 			while (sc.hasNext()) {
@@ -86,11 +87,11 @@ public class AddressBook {
 			newFile.renameTo(dump);
 		}
 		catch(Exception e){
-			System.out.println("Error");
+			System.out.println("Error: "+e);
 		}
 	}
 	
-	public void readRecord(String name) {
+	public void readRecord(String name) throws FileNotFoundException {
 		
 		boolean found = false;
 		String firstName=""; 
@@ -101,24 +102,23 @@ public class AddressBook {
 		String zip = "";
 		String phone ="";
 		
-		try {
-			Scanner sc = new Scanner(new File("C:/Users/w/Desktop/AddBook/output.txt"));
-			sc.useDelimiter("[,\n]");
+		Scanner sc = new Scanner(new File("C:/Users/w/Desktop/AddBook/output.txt"));
+		sc.useDelimiter("[,\n]");
 			
-			while(sc.hasNext() && !found) {
-				firstName=sc.next();
-				lastName=sc.next();
-				address=sc.next(); 
-				city=sc.next();
-				state=sc.next();
-				zip =sc.next();
-				phone =sc.next();
+		while(sc.hasNext() && !found) {
+			firstName=sc.next();
+			lastName=sc.next();
+			address=sc.next(); 
+			city=sc.next();
+			state=sc.next();
+			zip =sc.next();
+			phone =sc.next();
 				
-				if(name.equals(firstName)) {
-					found = true;
-				}
-				
+			if(name.equals(firstName)) {
+				found = true;
 			}
+		}
+				
 			if(found) {
 				System.out.println("First Name: "+firstName);
 				System.out.println("Last Name: "+lastName);
@@ -129,12 +129,10 @@ public class AddressBook {
 				System.out.println("Phone Number: "+phone);
 			}
 			else {
-				System.err.println("Record not found");
+				System.out.println("Record not found");
 			}
-		}
-		catch(Exception e) {
-			
-		}
+		
+		sc.close();
 	}
 	
 	public void editRecord(String newfirstName,String newlastName,
@@ -180,9 +178,10 @@ public class AddressBook {
 			oldFile.delete();
 			File dump = new File("C:/Users/w/Desktop/AddBook/output.txt");
 			newFile.renameTo(dump);
-		}
+			
+		}		
 		catch(Exception e){
-			System.err.println("File not found");
+			System.err.println("File not found "+e);
 		}
 	}
 }
