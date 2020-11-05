@@ -85,6 +85,7 @@ public class AddressBook {
 			oldFile.delete();
 			File dump = new File("C:/Users/w/Desktop/AddBook/output.txt");
 			newFile.renameTo(dump);
+			removeBlankLines();
 		}
 		catch(Exception e){
 			System.out.println("Error: "+e);
@@ -178,10 +179,37 @@ public class AddressBook {
 			oldFile.delete();
 			File dump = new File("C:/Users/w/Desktop/AddBook/output.txt");
 			newFile.renameTo(dump);
-			
+			removeBlankLines();
 		}		
 		catch(Exception e){
 			System.err.println("File not found "+e);
+		}
+	}
+	public void removeBlankLines() {
+
+		String inputFile ="C:/Users/w/Desktop/AddBook/output.txt";
+		try {
+			
+			BufferedReader inputFileReader = new BufferedReader(new FileReader(inputFile));
+			String inputFileLine;
+			String newFile = "C:/Users/w/Desktop/AddBook/temp.txt";
+	
+			PrintWriter outputFile = new PrintWriter(new FileWriter(newFile));
+			while((inputFileLine = inputFileReader.readLine()) != null) {
+				if(inputFileLine.length() == 0)
+					continue;
+				outputFile.println(inputFileLine);
+			} 
+			inputFileReader.close();
+			outputFile.close();
+			File inFile=new File(inputFile);
+			File outFile=new File(newFile);
+			File dump=new File(inputFile);
+			inFile.delete();
+			outFile.renameTo(dump);
+		}
+		catch(Exception e) {
+			System.out.println(e);
 		}
 	}
 }
